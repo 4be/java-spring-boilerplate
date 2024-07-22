@@ -1,0 +1,44 @@
+server:
+  port: ${PORT}
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss}|%-5level|%logger{35} Request-ID=%X{requestId} %msg %n'
+
+spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          ms-core:
+            url: ${MS_CORE_URL}
+          api-banking-manager:
+            url: ${API_BANKING_MANAGER_URL}
+          central-config:
+            url: ${CENTRAL_CONFIG_URL}
+          ura:
+            url: ${URA_URL}
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+      password: ${REDIS_PASSWORD}
+  datasource:
+    url: ${ORACLE_DB_URL}
+    username: ${ORACLE_DB_USERNAME}
+    password: ${ORACLE_DB_PASSWORD}
+    driver-class-name: "oracle.jdbc.OracleDriver"
+
+springdoc:
+  swagger-ui:
+    enabled: true

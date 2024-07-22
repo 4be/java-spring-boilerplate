@@ -1,0 +1,10 @@
+include:
+  - project: devops/ci-templates
+    ref: &include_ref 1.0.20-GRADLE
+    file: /templates/gradle-service.gitlab-ci.yml
+
+
+variables:
+  RANCHER_PROJECT: integration
+  FILE_TAG: *include_ref
+  GRADLE_CMD: "gradle clean test publish"
